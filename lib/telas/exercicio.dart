@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_receitas2/_comum/minhas_cores.dart';
 import 'package:flutter_application_receitas2/modelos/exerciciomodelo.dart';
 import 'package:flutter_application_receitas2/modelos/sentimentoModelo.dart';
 
@@ -39,7 +40,7 @@ class ExercicioTela extends StatelessWidget {
           )
         ]),
         centerTitle: true,
-        backgroundColor: Color(0xFF0A6D92),
+        backgroundColor: MinhasCores.azulEscuro,
         elevation: 0,
         toolbarHeight: 72,
         shape: RoundedRectangleBorder(
