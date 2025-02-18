@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_receitas2/componentes/decoracao_campo_autentificacao.dart';
 
 class Autenticacaotela extends StatefulWidget {
   const Autenticacaotela({super.key});
@@ -12,6 +13,8 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
 
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
+  final _confirmarSenhaController = TextEditingController();
+  final _nomeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -30,7 +33,7 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
                 Column(
                   children: [
                     Text(
-                      "Profress-Gym",
+                      "Progresso-Gym",
                       style: TextStyle(
                           fontSize: 48,
                           fontWeight: FontWeight.bold,
@@ -55,18 +58,13 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelText: "E-mail",
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                        validator: (value) {
+                        decoration: getAutenticacaoInputDecoration("E-mail"),
+                        validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor, insira seu e-mail';
+                          }
+                          if (!value.contains('@')) {
+                            return 'Por favor, insira um e-mail válido';
                           }
                           return null;
                         },
@@ -77,15 +75,7 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
                       TextFormField(
                         controller: _senhaController,
                         obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: "Senha",
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
+                        decoration: getAutenticacaoInputDecoration("Senha"),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor, insira sua senha';
@@ -99,17 +89,10 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
                           visible: !queroEntrar,
                           child: Column(children: [
                             TextFormField(
-                              controller: _senhaController,
+                              controller: _confirmarSenhaController,
                               obscureText: true,
-                              decoration: InputDecoration(
-                                labelText: "Confirmar Senha",
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
+                              decoration: getAutenticacaoInputDecoration(
+                                  "Confirmar sua senha"),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Por favor, Confirmar sua senha';
@@ -119,20 +102,13 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
                             ),
                             SizedBox(height: 30),
                             TextFormField(
-                              controller: _senhaController,
+                              controller: _nomeController,
                               obscureText: true,
-                              decoration: InputDecoration(
-                                labelText: "Seu nome",
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              validator: (value) {
+                              decoration:
+                                  getAutenticacaoInputDecoration("Seu nome"),
+                              validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Por favor, insira seu nome';
+                                  return 'Por favor, o nome não pode ser vazio ';
                                 }
                                 return null;
                               },
@@ -142,23 +118,17 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
                       // Botão de Login
                       ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            // Aqui você pode implementar a lógica para login
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Login realizado com sucesso')),
-                            );
-                          }
+                          botaoPrincipalClicado();
                         },
-                        child: Text((queroEntrar) ? "Entrar" : "Cadastrar"),
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(double.infinity, 50),
                           backgroundColor:
-                              const Color.fromARGB(255, 233, 241, 255),
+                              const Color.fromARGB(255, 255, 255, 255),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        child: Text((queroEntrar) ? "Entrar" : "Cadastrar"),
                       ),
 
                       SizedBox(height: 50),
@@ -188,5 +158,13 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
         ),
       ),
     );
+  }
+
+  botaoPrincipalClicado() {
+    if (_formKey.currentState!.validate()) {
+      print("valido");
+    } else {
+      print("invalido");
+    }
   }
 }

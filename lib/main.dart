@@ -2,8 +2,6 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_receitas2/telas/autenticacaoTela.dart';
 
-import 'package:flutter_application_receitas2/telas/exercicio.dart';
-
 void main() {
   runApp(
     DevicePreview(
