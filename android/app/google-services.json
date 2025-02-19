@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "907249757559",
+    "project_id": "progresso-gym",
+    "storage_bucket": "progresso-gym.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907249757559:android:c050adc2ef1337bda64572",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_receitas2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWp8BJQ-G46H-RT8V2QNAWdrZjOchBjMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

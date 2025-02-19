@@ -1,8 +1,17 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_receitas2/telas/autenticacaoTela.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  // Certifique-se de que a função main seja async
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Garante que o binding esteja pronto antes de chamar o Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     DevicePreview(
       enabled: true,
