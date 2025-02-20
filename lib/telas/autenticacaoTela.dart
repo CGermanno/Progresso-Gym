@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_receitas2/_comum/meuSlackbar.dart';
 import 'package:flutter_application_receitas2/componentes/decoracao_campo_autentificacao.dart';
+import 'package:flutter_application_receitas2/servicos/autenticacao_servicos.dart';
 
 class Autenticacaotela extends StatefulWidget {
   const Autenticacaotela({super.key});
@@ -16,6 +18,8 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
   final _confirmarSenhaController = TextEditingController();
   final _nomeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  AutenticacaoServico autenServico = AutenticacaoServico();
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +107,6 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
                             SizedBox(height: 30),
                             TextFormField(
                               controller: _nomeController,
-                              obscureText: true,
                               decoration:
                                   getAutenticacaoInputDecoration("Seu nome"),
                               validator: (String? value) {
@@ -161,8 +164,36 @@ class _AutenticacaotelaState extends State<Autenticacaotela> {
   }
 
   botaoPrincipalClicado() {
+    String nome = _nomeController.text;
+    String email = _emailController.text;
+    String senha = _senhaController.text;
+
     if (_formKey.currentState!.validate()) {
-      print("valido");
+      if (queroEntrar) {
+        print("Entrada Valida");
+        autenServico
+            .logarUsuario(email: email, senha: senha)
+            .then((String? erro) {
+          if (erro != null) {
+            mostrarSnackbar(context: context, texto: erro);
+          }
+        });
+      } else {
+        print("Cadastro Valido");
+        print(
+            "${_emailController.text}, ${_senhaController.text}, ${_nomeController.text},");
+
+        // autenServico.cadastrarUsuario(_emailController.text, _senhaController.text);
+        autenServico
+            .cadastrarUsuario(nome: nome, senha: senha, email: email)
+            .then(
+          (String? erro) {
+            if (erro != null) {
+              mostrarSnackbar(context: context, texto: erro);
+            }
+          },
+        );
+      }
     } else {
       print("invalido");
     }
