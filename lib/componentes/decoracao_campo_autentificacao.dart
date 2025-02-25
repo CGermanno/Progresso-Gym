@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_application_receitas2/_comum/minhas_cores.dart";
 
-InputDecoration getAutenticacaoInputDecoration(String label) {
+InputDecoration getAutenticacaoInputDecoration(String label, {Icon? icon}) {
   return InputDecoration(
+    icon: icon,
     label: Text(label),
     fillColor: Colors.white,
     filled: true,

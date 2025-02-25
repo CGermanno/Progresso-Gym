@@ -46,7 +46,7 @@ class RoteadorTela extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Iniciotela();
+          return Iniciotela(user: snapshot.data!);
         } else {
           return Autenticacaotela();
         }

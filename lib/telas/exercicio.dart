@@ -4,14 +4,8 @@ import 'package:flutter_application_receitas2/modelos/exerciciomodelo.dart';
 import 'package:flutter_application_receitas2/modelos/sentimentoModelo.dart';
 
 class ExercicioTela extends StatelessWidget {
-  ExercicioTela({super.key});
-
-  final ExercicioModelo exercicioModelo = ExercicioModelo(
-      id: "EX001",
-      nome: "Remada Baixa Supinada",
-      treino: "Treino A",
-      comoFazer: "Fazer acordado",
-      urlImage: "");
+  final ExercicioModelo exercicioModelo;
+  ExercicioTela({super.key, required this.exercicioModelo});
 
   final List<SentimentoModelo> listasentimentos = [
     SentimentoModelo(
